@@ -1136,6 +1136,10 @@ textarea,
 .uneditable-input {
   width: 192px; }
 
+form .errors {
+  list-style: none;
+  color: red; }
+
 .checkbox,
 .radio {
   margin-bottom: 12px;

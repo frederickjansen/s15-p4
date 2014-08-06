@@ -1,26 +1,126 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+use Mitch\LaravelDoctrine\Traits\Authentication;
+use Mitch\LaravelDoctrine\Traits\SoftDeletes;
+use Mitch\LaravelDoctrine\Traits\Timestamps;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+/**
+ * Class User
+ * @package Ellipsis\Entity
+ * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class User implements UserInterface
+{
+    use SoftDeletes;
+    use Authentication;
+    use Timestamps;
 
-	use UserTrait, RemindableTrait;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $email;
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="author")
+     */
+    protected $articles;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="author")
+    */
+    protected $comments;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param Article $articles
+     * @return User
+     */
+    public function addArticle(Article $articles)
+    {
+        $this->articles[] = $articles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param Article $articles
+     */
+    public function removeArticle(Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Comment $comments
+     * @return User
+     */
+    public function addComment(Comment $comments)
+    {
+        $this->comments[] = $comments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param Comment $comments
+     */
+    public function removeComment(Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
