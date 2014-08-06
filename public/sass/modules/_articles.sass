@@ -1,0 +1,18 @@
+// CSS code for the articles block
+
+$article-color: scale-color($base, $lightness: 92%)
+
+.articles
+  background-color: $share-color
+  border-radius: 6px
+  position: relative
+  padding-top: 23px
+  +dropdown-arrow($share-color, -9px, 23px)
+  +box-shadow($shadow 2px 2px 0)
+
+  .pll
+    padding-left: 20px
+
+  .btn
+    +box-shadow(darken($firm, 10%) 2px 2px 0)
+    +border-radius(0 0 6px 6px)

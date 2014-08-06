@@ -1,0 +1,41 @@
+// Sharing box include variety of ways to share something
+// By idea this block should have
+$share-color: scale-color($base, $lightness: 92%)
+$hover-color: scale-color($firm, $lightness: 20%)
+$hover-shadow: darken($hover-color, 10%)
+
+.share
+  background-color: $share-color
+  border-radius: 6px
+  position: relative
+  margin-bottom: 20px
+  +dropdown-arrow($share-color, -9px, 23px)
+  +box-shadow($shadow 2px 2px 0)
+
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 15px
+
+  li
+    padding-top: 16px
+    +clearfix
+    &:first-child
+      padding-top: 0
+
+  .toggle
+    float: right
+    margin: 0
+
+  .btn
+    +box-shadow(darken($firm, 10%) 2px 2px 0)
+    +border-radius(0 0 6px 6px)
+
+    &:hover
+      +box-shadow($hover-shadow 2px 2px 0)
+
+.share-label
+  float: left
+  font-size: 15px
+  padding-top: 5px
+  width: 50%

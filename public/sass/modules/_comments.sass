@@ -1,0 +1,40 @@
+$comment-color: scale-color($base, $lightness: 92%)
+
+.previous-comments
+  padding: 23px
+  margin-bottom: 40px
+
+.future-comments
+
+  & div.control-group
+    padding: 15px 15px 0 15px
+
+.previous-comments, .future-comments
+  background-color: $share-color
+  border-radius: 6px
+  position: relative
+  +dropdown-arrow($share-color, -9px, 23px)
+  +box-shadow($shadow 2px 2px 0)
+
+  .odd
+    background-color: #eee
+
+  .comment
+    padding: 20px 0
+
+    p
+      margin-bottom: 0
+
+  h3
+    clear: both
+
+  .previous-comments
+    margin-bottom: 20px
+
+  .btn
+    +box-shadow(darken($firm, 10%) 2px 2px 0)
+    +border-radius(0 0 6px 6px)
+
+  textarea
+    width: 94%
+    height: 75px
