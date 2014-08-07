@@ -4,25 +4,13 @@ use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
 {
-    public function getAllUsers()
+    public function getUserByEmail($email)
     {
         $qb = $this->createQueryBuilder('u')
-            ->select('u.username')
-            ->orderBy('u.id', "ASC");
+            ->select('u.id, u.email')
+            ->where('u.email = :email')
+            ->setParameter('email', $email);
 
         return $qb->getQuery()->getResult();
-    }
-
-    public function getUserLogin($username, $password)
-    {
-        $qb = $this->createQueryBuilder('u')
-            ->select('u.username')
-            ->where('u.username = :username')
-            ->andWhere('u.password = :password')
-            ->setParameter('username', $username)
-            ->setParameter('password', $password);
-
-        return $qb->getQuery()
-            ->getResult();
     }
 }

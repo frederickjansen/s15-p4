@@ -42,15 +42,18 @@ class RegisterController extends BaseController
             /** @var Doctrine\ORM\EntityManagerInterface $em */
             $em = App::make('Doctrine\ORM\EntityManagerInterface');
 
-            $user = new User();
-            $user->setEmail(Input::get('email'));
-            $user->setPassword(Hash::make(Input::get('password')));
-
-            $em->persist($user);
-            $em->flush();
-
-            if (Auth::attempt($user))
+            $oldUser = $em->getRepository('User')->getUserByEmail(Input::get('email'));
+            if (empty($oldUser))
             {
+                $user = new User();
+                $user->setEmail(Input::get('email'));
+                $user->setPassword(Hash::make(Input::get('password')));
+
+                $em->persist($user);
+                $em->flush();
+
+                Auth::login($user);
+
                 return Redirect::route('home');
             }
             else
