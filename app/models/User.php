@@ -9,7 +9,6 @@ use Mitch\LaravelDoctrine\Traits\Timestamps;
 
 /**
  * Class User
- * @package Ellipsis\Entity
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks()

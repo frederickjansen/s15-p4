@@ -4,7 +4,7 @@ return [
     'simple_annotations' => false,
 
     'metadata' => [
-        base_path('app/Ellipsis/Entity')
+        base_path('app/models')
     ],
 
     'proxy' => [

@@ -23,7 +23,7 @@ class LoginController extends \BaseController
         }
         else
         {
-            return Redirect::to('/');
+            return Redirect::route('home');
         }
 
 
@@ -48,7 +48,7 @@ class LoginController extends \BaseController
 
             if (Auth::attempt($user))
             {
-                return Redirect::to('/');
+                return Redirect::route('home');
             }
             else
             {
