@@ -17,9 +17,19 @@ class PageController extends BaseController
         /** @var Doctrine\ORM\EntityManagerInterface $em */
         $em = App::make('Doctrine\ORM\EntityManagerInterface');
         $articles = $em->getRepository('Article')->getLatestArticles();
+        $comments = $this->getLatestComments();
 
         return View::make('page.index', array(
-            'articles'  =>  $articles
+            'articles'  =>  $articles,
+            'latestComments' => $comments
         ));
+    }
+
+    private function getLatestComments($amount = 3)
+    {
+        $em = App::make('Doctrine\ORM\EntityManagerInterface');
+        $articles = $em->getRepository('Comment')->getLatestComments($amount);
+
+        return $articles;
     }
 }

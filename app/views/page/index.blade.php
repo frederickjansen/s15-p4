@@ -36,6 +36,6 @@
                 </div>
 
             </div><!-- /span8 articles -->
-
+            @include('page.sidebar');
         </div><!-- /row -->
 @stop
