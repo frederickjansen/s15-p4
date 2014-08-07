@@ -10,7 +10,7 @@
         <form action="{{ route('article_show', $article->getId()) }}" method="post">
             {{ $csrf_token }}
             <div class="span9">
-                @if ($article->getAuthor()->getEmail() == Auth::user()->getEmail())
+                @if (Auth::check() && $article->getAuthor()->getEmail() == Auth::user()->getEmail())
                     <h2 class="mbl">Article</h2>
                     <article class="article">
                         <div>
@@ -42,9 +42,9 @@
                     </article>
                 @endif
             </div>
-            @if ($article->getAuthor()->getEmail() == Auth::user()->getEmail())
+            @if (Auth::check() && $article->getAuthor()->getEmail() == Auth::user()->getEmail())
                 <div class="span3">
-                    <h3 class="mbm mtl">Tags</h3>
+                    <h3 class="mbm mtl">Tags
                     <input name="tagsinput" id="tagsinput" class="tagsinput" value="{{ $article->getTags() }}"/>
                 </div>
             @else
@@ -54,23 +54,6 @@
                 </div>
             @endif
         </form>
-        <!-- <div class="span3">
-            <h3 class="mtl mbl">Add Comment</h3>
-            <section class="future-comments">
-                {% render controller('ImdEllipsisBundle:Comment:showForm', { 'articleId': article.id }) %}
-            </section>
-        </div> -->
     </div>
-
-    <!-- <div class="row">
-        <div class="span9">
-            <section class="comments" id="comments">
-                <h3 class="mtl mbl">Comments</h3>
-                <section class="previous-comments">
-                    {% include 'ImdEllipsisBundle:Comment:comment.html.twig' with { 'comments': comments } %}
-                </section>
-            </section>
-        </div>
-    </div> -->
 
 @stop
