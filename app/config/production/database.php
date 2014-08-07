@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'laravel-p4',
-			'username'  => 'root',
-			'password'  => '',
+			'host'      => 'sql3.freesqldatabase.com',
+			'database'  => 'sql348934',
+			'username'  => 'sql348934',
+			'password'  => 'bQ3!yS5%',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
