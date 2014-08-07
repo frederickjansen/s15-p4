@@ -18,11 +18,24 @@
                         Settings
                     </a>
                 </li>
+                @if (Auth::guest())
                 <li>
-                    <a href="{{ route('about') }}">
-                        API
+                    <a href="{{ route('login') }}">
+                        Login
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('register') }}">
+                        Register
+                    </a>
+                </li>
+                @else
+                <li>
+                    <a href="{{ route('logout') }}">
+                        Logout
+                    </a>
+                </li>
+                @endif
             </ul>
             <ul class="nav pull-right">
                 <li>

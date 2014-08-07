@@ -7,7 +7,7 @@ class ArticleController extends \BaseController
     public function __construct()
     {
         // Make sure users are authenticated
-        $this->beforeFilter('auth');
+        $this->beforeFilter('auth', array('except' => 'show'));
         // Protect against CSRF
         $this->beforeFilter('csrf', array('on' => 'post'));
     }
@@ -49,5 +49,10 @@ class ArticleController extends \BaseController
         $data['title'] = Input::old('title');
         $data['article'] = Input::old('article');
         return View::make('article.create', $data);
+    }
+
+    public function show()
+    {
+
     }
 }

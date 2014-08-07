@@ -61,4 +61,9 @@ class LoginController extends \BaseController
             ->withInput();
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return Redirect::route('home');
+    }
 }
