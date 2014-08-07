@@ -39,10 +39,15 @@ class RegisterController extends BaseController
 
         if ($validator->passes())
         {
-            $user = array(
-                'email' => Input::get('email'),
-                'password' => Input::get('password')
-            );
+            /** @var Doctrine\ORM\EntityManagerInterface $em */
+            $em = App::make('Doctrine\ORM\EntityManagerInterface');
+
+            $user = new User();
+            $user->setEmail(Input::get('email'));
+            $user->setPassword(Hash::make(Input::get('password')));
+
+            $em->persist($user);
+            $em->flush();
 
             if (Auth::attempt($user))
             {
@@ -50,13 +55,13 @@ class RegisterController extends BaseController
             }
             else
             {
-                return Redirect::route('login')
-                    ->withErrors('Your username/password is incorrect.')
+                return Redirect::route('register')
+                    ->withErrors('Email already taken.')
                     ->withInput();
             }
         }
 
-        return Redirect::route('login')
+        return Redirect::route('register')
             ->withErrors($validator)
             ->withInput();
     }
