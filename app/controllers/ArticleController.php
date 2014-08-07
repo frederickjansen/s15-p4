@@ -63,8 +63,20 @@ class ArticleController extends \BaseController
         return View::make('article.create', $data);
     }
 
-    public function show()
+    public function show($id)
     {
+        /** @var Doctrine\ORM\EntityManagerInterface $em */
+        $em = App::make('Doctrine\ORM\EntityManagerInterface');
+        $article = $em->getRepository('Article')->find($id);
 
+        if (!$article)
+        {
+            return Redirect::route('home');
+        }
+
+        $data['csrf_token'] = Form::token();
+        $data['article'] = $article;
+
+        return View::make('article.article', $data);
     }
 }
