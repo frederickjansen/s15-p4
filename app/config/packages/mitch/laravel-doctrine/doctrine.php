@@ -8,8 +8,8 @@ return [
     ],
 
     'proxy' => [
-        'auto_generate' => false,
-        'directory'     => null,
+        'auto_generate' => true,
+        'directory'     => 'C:\Users\Frederick\AppData\Local\Temp',
         'namespace'     => null
     ],
 
