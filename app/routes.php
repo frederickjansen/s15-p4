@@ -18,6 +18,10 @@ Route::get('/', array('as' => 'home', 'uses' => 'PageController@index'));
 Route::get('/login', array('as' => 'login', 'uses' => 'LoginController@getLogin'));
 Route::post('/login', 'LoginController@postLogin');
 
+// Register
+Route::get('/register', array('as' => 'register', 'uses' => 'RegisterController@getRegister'));
+Route::post('/register', 'RegisterController@postRegister');
+
 // About
 Route::get('/about', array('as' => 'about', 'uses' => 'PageController@about'));
 

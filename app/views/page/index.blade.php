@@ -1,6 +1,8 @@
 @extends('layout')
 
-@section('title')Articles - Ellipsis@stop
+@section('title')
+    Articles - Ellipsis
+@stop
 
 @section('body')
         <div class="row">

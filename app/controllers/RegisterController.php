@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
 
-class LoginController extends \BaseController
+class RegisterController extends BaseController
 {
     public function __construct()
     {
@@ -11,15 +11,15 @@ class LoginController extends \BaseController
         $this->beforeFilter('csrf', array('on' => 'post'));
     }
 
-    public function getLogin()
+    public function getRegister()
     {
         if (Auth::guest())
         {
             $csrf_token = Form::token();
-            return View::make('page.login', array(
-                'csrf_token' => $csrf_token,
-                'email' => Input::old('email')
-            ));
+            $data['email'] = Input::old('email');
+            $data['csrf_token'] = $csrf_token;
+
+            return View::make('page.register', $data);
         }
         else
         {
@@ -27,7 +27,7 @@ class LoginController extends \BaseController
         }
     }
 
-    public function postLogin()
+    public function postRegister()
     {
         $data = Input::all();
         $rules = array(
@@ -60,5 +60,4 @@ class LoginController extends \BaseController
             ->withErrors($validator)
             ->withInput();
     }
-
 }
