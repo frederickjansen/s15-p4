@@ -1,6 +1,8 @@
 <?php
 
-class ArticleController extends BaseController
+use Illuminate\Support\Facades\View;
+
+class ArticleController extends \BaseController
 {
     public function __construct()
     {
@@ -8,5 +10,11 @@ class ArticleController extends BaseController
         $this->beforeFilter('auth');
         // Protect against CSRF
         $this->beforeFilter('csrf', array('on' => 'post'));
+    }
+
+    public function create()
+    {
+        $data['csrf_token'] = Form::token();
+        return View::make('article.create', $data);
     }
 }

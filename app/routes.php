@@ -26,13 +26,13 @@ Route::get('/contact', array('as' => 'contact', 'uses' => 'PageController@getCon
 Route::post('/contact', 'PageController@postContact');
 
 // Articles
-Route::get('/article', array('as' => 'articles', 'uses' => 'Article@index'));
-Route::get('/article/create', array('as' => 'article_create', 'uses' => 'Article@create'));
-Route::post('/article', 'Article@store');
-Route::get('/article/{id}', array('as' => 'article_show', 'uses' => 'Article@show'))->where('id', '[0-9]+');
-Route::get('/article/{id}/edit', array('as' => 'article_edit', 'uses' => 'Article@edit'))->where('id', '[0-9]+');
-Route::put('/article/{id}', 'Article@update')->where('id', '[0-9]+');
-Route::delete('/article/{id}', 'Article@destroy')->where('id', '[0-9]+');
+Route::get('/article', array('as' => 'articles', 'uses' => 'ArticleController@index'));
+Route::get('/article/create', array('as' => 'article_create', 'uses' => 'ArticleController@create'));
+Route::post('/article', 'ArticleController@store');
+Route::get('/article/{id}', array('as' => 'article_show', 'uses' => 'ArticleController@show'))->where('id', '[0-9]+');
+Route::get('/article/{id}/edit', array('as' => 'article_edit', 'uses' => 'ArticleController@edit'))->where('id', '[0-9]+');
+Route::put('/article/{id}', 'ArticleController@update')->where('id', '[0-9]+');
+Route::delete('/article/{id}', 'ArticleController@destroy')->where('id', '[0-9]+');
 
 // Comments
 Route::post('/comment/{article_id}', 'Comment@postComment')->where('id', '[0-9]+');
