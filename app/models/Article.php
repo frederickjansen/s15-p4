@@ -37,17 +37,7 @@ class Article
     protected $article;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    protected $status;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    protected $image;
-
-    /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $tags;
 
@@ -103,14 +93,14 @@ class Article
     public function setAuthor($author)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
     /**
      * Get author
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
@@ -147,29 +137,6 @@ class Article
     }
 
     /**
-     * Set image
-     *
-     * @param string $image
-     * @return Article
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
      * Set tags
      *
      * @param string $tags
@@ -190,29 +157,6 @@ class Article
     public function getTags()
     {
         return $this->tags;
-    }
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     * @return Article
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-    
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string 
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

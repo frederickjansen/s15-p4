@@ -18,10 +18,9 @@
                         <tbody>
                         @forelse ($articles as $article)
                             <tr class="success">
-                                <td class="pll"><a href="{{ route('article_show', $article.id) }}">{{ $article.title }}</a></td>
-                                <td>{{ $article.author }}</td>
-                                <td><a href="{{ route('article_show', $article.id) }}">{{ $article.comments|length }}</a></td>
-                                <td class="prl">{{ $article.status|capitalize }}</td>
+                                <td class="pll"><a href="{{ route('article_show', $article->getId()) }}">{{{ $article->getTitle() }}}</a></td>
+                                <td>{{{ $article->getAuthor()->getEmail() }}}</td>
+                                <td><a href="{{ route('article_show', $article->getId()) }}">{{{ count($article->getComments()) }}}</a></td>
                             </tr>
                         @empty
                         <tr class="info">

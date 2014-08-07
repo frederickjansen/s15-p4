@@ -58,6 +58,16 @@ class User implements UserInterface
     }
 
     /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
      * Add articles
      *
      * @param Article $articles
